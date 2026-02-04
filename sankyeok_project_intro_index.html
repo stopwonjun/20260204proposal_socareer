@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 마을공동체 고도화사업 전략기획안 | Project Sankyeok</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Pretendard:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1115;
+            --bg-card: #16191f;
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fdcb6e;
+            --text-main: #ecf0f1;
+            --text-muted: #b2bec3;
+            --border: rgba(255, 255, 255, 0.08);
+            --gradient-text: linear-gradient(90deg, #fff, #dfe6e9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow */
+        .glow-bg {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-1 {
+            top: -10%;
+            right: -10%;
+            background: var(--primary);
+        }
+
+        .glow-2 {
+            bottom: -10%;
+            left: -10%;
+            background: #0984e3;
+        }
+
+        .glow-3 {
+            top: 40%;
+            left: 30%;
+            background: var(--accent);
+            opacity: 0.05;
+            width: 800px;
+            height: 800px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Typography */
+        .text-gradient {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        /* Header */
+        header {
+            padding: 6rem 0 4rem;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        /* Needs Grid (3 Columns) */
+        .needs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .need-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        .need-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .need-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .need-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .need-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .need-list li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .need-list li::before {
+            content: '•';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Execution Model Flow */
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-card {
+            flex: 1;
+            min-width: 180px;
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-card h4 {
+            color: white;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .flow-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            padding-top: 3rem;
+        }
+
+        /* Core Logic Box */
+        .core-box {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.05));
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .core-box h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .core-box p {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .needs-grid,
+            .flow-container {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+    <div class="glow-bg glow-3"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <span class="section-label">PROJECT SANKYEOK</span>
+            <h1 class="text-gradient">마을 고도화 사업 기획안</h1>
+            <p>청년의 기술과 주민의 삶이 만나는<br><strong>디지털 아카이빙 리빙랩</strong></p>
+        </header>
+
+        <!-- 1. 배경 및 기획 의도 -->
+        <section>
+            <span class="section-label">01. Needs & Background</span>
+            <h2 class="text-gradient">배경 및 기획 의도</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                각 참여 주체의 뚜렷한 니즈를 충족하며, 자연스러운 교류를 만들어냅니다.
+            </p>
+
+            <div class="needs-grid">
+                <!-- 청년 -->
+                <div class="need-card">
+                    <span class="need-icon">🎓</span>
+                    <h3 class="need-title">대학생 (Youth)</h3>
+                    <ul class="need-list">
+                        <li><strong>"눈에 보이는 결과물"</strong> 갈증</li>
+                        <li>단순 발표용 PPT가 아닌, 실제 돌아가는 웹사이트 제작 경험</li>
+                        <li>포트폴리오로 쓸 수 있는 '실전 프로젝트' 선호</li>
+                    </ul>
+                </div>
+
+                <!-- 주민 -->
+                <div class="need-card">
+                    <span class="need-icon">🏡</span>
+                    <h3 class="need-title">주민 (Residents)</h3>
+                    <ul class="need-list">
+                        <li><strong>"젊은 활력과의 소통"</strong></li>
+                        <li>청년들과 이야기하며 자연스러운 정보 공유</li>
+                        <li>우리 마을 이야기를 들어줄 새로운 청중 필요</li>
+                    </ul>
+                </div>
+
+                <!-- 마을 -->
+                <div class="need-card">
+                    <span class="need-icon">📍</span>
+                    <h3 class="need-title">산격동 (Village)</h3>
+                    <ul class="need-list">
+                        <li><strong>"숨은 명소의 재발견"</strong></li>
+                        <li>마을 핫플레이스(Hidden Gem) 발굴 및 공유</li>
+                        <li>세대 간 장벽을 허무는 자연스러운 연령대 교류</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 실행 모델 -->
+        <section>
+            <span class="section-label">02. Execution Model</span>
+            <h2 class="text-gradient">실행 프로세스 (Process)</h2>
+            <p style="color: var(--text-muted);">
+                공동체의 가치를 높이는 주제를 찾고, 디지털 결과물로 만드는 여정입니다.
+            </p>
+
+            <div class="flow-container">
+                <!-- Step 1 -->
+                <div class="flow-card">
+                    <div style="font-size:2rem; margin-bottom:0.5rem">🤝</div>
+                    <h4>1. Team Building</h4>
+                    <p>청년과 주민이 한 팀이 되어<br>교류 시작</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <!-- Step 2 -->
+                <div class="flow-card">
+                    <div style="font-size:2rem; margin-bottom:0.5rem">🧐</div>
+                    <h4>2. Find Problem</h4>
+                    <p>마을의 가치를 높일 수 있는<br>다양한 주제 탐색</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <!-- Step 3 -->
+                <div class="flow-card">
+                    <div style="font-size:2rem; margin-bottom:0.5rem">🗺️</div>
+                    <h4>3. Scenario</h4>
+                    <p>숨은 맛집/명소 탐방 등<br>구체적 시나리오 실행</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <!-- Step 4 -->
+                <div class="flow-card">
+                    <div style="font-size:2rem; margin-bottom:0.5rem">💾</div>
+                    <h4>4. Archiving</h4>
+                    <p>수집된 정보를<br>DB로 정리 및 저장</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <!-- Step 5 -->
+                <div class="flow-card" style="border-color: var(--primary);">
+                    <div style="font-size:2rem; margin-bottom:0.5rem">🚀</div>
+                    <h4 style="color: var(--secondary);">5. Web Publish</h4>
+                    <p>정리된 DB를<br>웹사이트로 시각화/배포</p>
+                </div>
+            </div>
+
+            <!-- 핵심 로직 -->
+            <div class="core-box">
+                <h3>💡 Core Mechanism</h3>
+                <p>
+                    "참여자는 <strong>노션(Notion)</strong>을 배우면서 기록했을 뿐인데,<br>
+                    결과는 <strong>'눈에 보이는 웹사이트(Visual Result)'</strong>로 탄생합니다."
+                </p>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 3rem 0; color: #636e72; font-size: 0.85rem;">
+            &copy; 2026 Socareer AI Team. Project Sankyeok.
+        </footer>
+    </div>
+</body>
+
+</html>
